@@ -7,11 +7,13 @@ pygame.font.init()
 font = pygame.font.Font('fonts/myfont.ttf', 24)
 
 # Set the window size to fullscreen
-size = (1920, 1080)
+info = pygame.display.Info()
+screen_height = info.current_h
+screen_width = info.current_w
+size = (screen_width, screen_height)
 flags = pygame.FULLSCREEN
 screen = pygame.display.set_mode(size, flags, vsync=0)
-screen_height = size[1]
-screen_width = size[0]
+
 
 # Set the window title
 pygame.display.set_caption("Pong")
