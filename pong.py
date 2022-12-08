@@ -6,9 +6,12 @@ pygame.init()
 pygame.font.init()
 font = pygame.font.Font('fonts/myfont.ttf', 24)
 
-# Set the window size
-size = (800, 600)
-screen = pygame.display.set_mode(size)
+# Set the window size to fullscreen
+size = (1920, 1080)
+flags = pygame.FULLSCREEN
+screen = pygame.display.set_mode(size, flags, vsync=0)
+screen_height = size[1]
+screen_width = size[0]
 
 # Set the window title
 pygame.display.set_caption("Pong")
@@ -16,7 +19,10 @@ pygame.display.set_caption("Pong")
 # Set up the players and their rectangles
 player = pygame.Rect(20, 250, 20, 100)  # Left edge of the screen
 player_score = 0
-ai = pygame.Rect(760, 250, 20, 100)  # Right edge of the screen
+player_goal = pygame.Rect( -10, 0, 10, screen_height)
+ai = pygame.Rect(screen_width-40, 250, 20, 100)  # Right edge of the screen
+ai_score = 0
+ai_goal = pygame.Rect(screen_width, 0, 10, screen_height)
 
 # Set the initial position and velocity of the circle
 x = 400  # Initial x position
@@ -59,9 +65,9 @@ while running:
   ball.y = y - 25  # Update the ball rectangle's y position
 
   # Check if the ball rectangle is colliding with any of the player rectangles or the edge of the screen
-  if ball.colliderect(player) or ball.colliderect(ai) or ball.left < 0 or ball.right > size[0]:
+  if ball.colliderect(player) or ball.colliderect(ai) or ball.left < 0 or ball.right > screen_width:
     dx = -dx  # Reverse the x velocity
-  if ball.top < 0 or ball.bottom > size[1]:
+  if ball.top < 0 or ball.bottom > screen_height:
     dy = -dy  # Reverse the y velocity
 
   # Draw the game state
