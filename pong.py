@@ -1,4 +1,5 @@
 import pygame
+import pygame.key
 
 # Initialize Pygame
 pygame.init()
@@ -31,6 +32,17 @@ while running:
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
       running = False
+
+  # Check if the up or down keys are being pressed
+  keys = pygame.key.get_pressed()
+  if keys[pygame.K_UP]:
+    player1.move_ip(0, -5)  # Move player1 up by 5
+  if keys[pygame.K_DOWN]:
+    player1.move_ip(0, 5)  # Move player1 down by 5
+  if keys[pygame.K_w]:
+    player2.move_ip(0, -5)  # Move player1 up by 5
+  if keys[pygame.K_s]:
+    player2.move_ip(0, 5)  # Move player1 down by 5
 
   # Update the game state
   x += dx  # Update the x position
