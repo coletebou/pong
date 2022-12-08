@@ -49,12 +49,17 @@ while running:
     if event.type == pygame.QUIT:
       running = False
 
-  # Check if the up or down keys are being pressed
+  # Check for key presses
   keys = pygame.key.get_pressed()
   if keys[pygame.K_UP]:
     player.move_ip(0, -player_speed)  # Move player1 up by 5 on up arrow
   if keys[pygame.K_DOWN]:
     player.move_ip(0, player_speed)  # Move player1 down by 5 on down arrow
+  if keys[pygame.K_ESCAPE]:
+    pygame.quit()
+    exit()
+
+  #AI Motion
   if ball.y < ai.y:
     ai.move_ip(0, -ai_speed)  # Move player2 closer to ball
   if ball.y > ai.y:
